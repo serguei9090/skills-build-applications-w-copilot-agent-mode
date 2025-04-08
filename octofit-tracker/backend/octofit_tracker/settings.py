@@ -82,14 +82,6 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 MONGO_CLIENT = MongoClient('mongodb://localhost:27017/')
 MONGO_DB = MONGO_CLIENT['octofit_db']
 
-# Enable Djongo as the database engine
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'octofit_db',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
