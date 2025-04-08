@@ -1,13 +1,15 @@
 from django.core.management.base import BaseCommand
-from django.conf import settings
+from pymongo import MongoClient
 from bson import ObjectId
 from datetime import timedelta
 
 class Command(BaseCommand):
-    help = 'Populate the database with test data for users, teams, activities, leaderboard, and workouts'
+    help = 'Populate the octofit_db database with test data for users, teams, activities, leaderboard, and workouts'
 
     def handle(self, *args, **kwargs):
-        db = settings.MONGO_DB
+        # Connect to MongoDB
+        client = MongoClient('mongodb://localhost:27017/')
+        db = client['octofit_db']
 
         # Drop existing collections
         db.users.drop()
