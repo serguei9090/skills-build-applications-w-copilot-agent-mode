@@ -82,6 +82,9 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
@@ -93,11 +96,9 @@ DATABASES = {
     }
 }
 
-# Ensure 'djongo' is included in the installed apps if necessary
-INSTALLED_APPS = [
-    # other apps...
-    'djongo',
-]
+# Additional settings for MongoDB
+MONGO_CLIENT = MongoClient('mongodb://localhost:27017/')
+MONGO_DB = MONGO_CLIENT['octofit_db']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
