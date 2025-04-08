@@ -1,29 +1,22 @@
-from djongo import models
+from django.db import models
 
 class User(models.Model):
-    id = models.ObjectIdField(primary_key=True)
+    username = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
+    password = models.CharField(max_length=100)
 
 class Team(models.Model):
-    id = models.ObjectIdField(primary_key=True)
-    name = models.CharField(max_length=255)
-    members = models.ArrayField(model_container=User)
+    name = models.CharField(max_length=100)
 
 class Activity(models.Model):
-    id = models.ObjectIdField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=255)
-    duration = models.IntegerField()
-    date = models.DateField()
+    user = models.CharField(max_length=100)  # Store user reference as a string (e.g., username or email)
+    activity_type = models.CharField(max_length=100)
+    duration = models.DurationField()
 
 class Leaderboard(models.Model):
-    id = models.ObjectIdField(primary_key=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    user = models.CharField(max_length=100)  # Store user reference as a string
     score = models.IntegerField()
 
 class Workout(models.Model):
-    id = models.ObjectIdField(primary_key=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     description = models.TextField()
