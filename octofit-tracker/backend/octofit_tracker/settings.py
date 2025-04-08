@@ -78,15 +78,14 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# MongoDB Configuration
-MONGO_CLIENT = MongoClient('mongodb://localhost:27017/')
-MONGO_DB = MONGO_CLIENT['octofit_db']
-
+# Reverting to Djongo configuration for MongoDB integration
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'octofit_db',
-        # other configurations...
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017/',
+        },
     }
 }
 
